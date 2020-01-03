@@ -33,7 +33,7 @@ NEXT_VERSION	   := $
 
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
-NEXT_MICRO          = $(shell echo $$(($(MICRO)+$(COMMITS_SINCE_TAG))))
+NEXT_MICRO         := $(shell echo $$(($(MICRO)+$(COMMITS_SINCE_TAG))))
 
 DATE                = $(shell date +'%d.%m.%Y')
 TIME                = $(shell date +'%H:%M:%S')
