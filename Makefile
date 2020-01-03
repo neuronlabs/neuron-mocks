@@ -48,20 +48,25 @@ dirty = "dirty"
 
 RELEASE_TARGETS = release-patch release-minor release-major
 .PHONY: $(RELEASE_TARGETS) release
-$(RELEASE_TARGETS): latest-core test-race lint commit 
+$(RELEASE_TARGETS): latest-core test-race lint commit
 release-patch: version-patch
 release-minor: version-minor
 release-major: version-major
-$(RELEASE_TARGETS): release
+$(RELEASE_TARGETS): create-tag push-tag push-develop
 
-## release a version
-release:
+.PHONY: create-tag
+create-tag:
 	$(info $(M) creating tag: '${CURRENT_TAG}'…)
 	git tag -a ${CURRENT_TAG} -m ${TAG_MESSAGE}
+.PHONY: push-develop
+push-develop:
 	$(info $(M) pushing to origin/develop…)
-	git push origin develop
+	@git push origin develop
+
+.PHONY: push-tag
+push-tag:
 	$(info $(M) pushing to origin/${CURRENT_TAG}…)
-	git push origin ${CURRENT_TAG}
+	@git push origin ${CURRENT_TAG}
 
 
 ## check git status
