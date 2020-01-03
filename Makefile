@@ -27,6 +27,9 @@ MAJOR              := $(word 1,$(VERSION_PARTS))
 MINOR              := $(word 2,$(VERSION_PARTS))
 MICRO              := $(word 3,$(VERSION_PARTS))
 
+CURRENT_VERSION    := $(MAJOR).$(MINOR).$(MICRO)
+CURRENT_TAG        := v$(CURRENT_VERSION)
+
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
 NEXT_MICRO          = $(shell echo $$(($(MICRO)+$(COMMITS_SINCE_TAG))))
@@ -124,24 +127,18 @@ latest-core:
 VERSIONS := version-patch version-minor version-major
 .PHONY: $(VERSIONS) current-tag
 version-patch:
-ifeq ($(strip $(COMMITS_SINCE_TAG)),)
-	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
-else
-	CURRENT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO)
+ifneq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION = $(MAJOR).$(MINOR).$(NEXT_MICRO)
 endif
 
 version-minor:
-ifeq ($(strip $(COMMITS_SINCE_TAG)),)
-	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
-else
-	CURRENT_VERSION := $(MAJOR).$(NEXT_MINOR).0
+ifneq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION = $(MAJOR).$(NEXT_MINOR).0
 endif
 
 version-major:
-ifeq ($(strip $(COMMITS_SINCE_TAG)),)
-	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
-else
-	CURRENT_VERSION := $(NEXT_MAJOR).0.0
+ifneq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION = $(NEXT_MAJOR).0.0
 endif
 
-$(VERSIONS): CURRENT_TAG := v$(CURRENT_VERSION)
+$(VERSIONS): ; CURRENT_TAG = v$(CURRENT_VERSION)
