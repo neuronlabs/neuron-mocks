@@ -136,14 +136,20 @@ VERSIONS := version-patch version-minor version-major
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO))
+else
+	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(MAJOR).$(NEXT_MINOR).0)
+else
+	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(NEXT_MAJOR).0.0)
+else
+	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
 $(VERSIONS): current-tag
 
