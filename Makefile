@@ -141,4 +141,4 @@ endif
 $(VERSIONS): current-tag
 
 current-tag:
-	CURRENT_TAG = v$(CURRENT_VERSION)
+	@export CURRENT_TAG=v$(CURRENT_VERSION)
