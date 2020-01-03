@@ -27,8 +27,8 @@ MAJOR              := $(word 1,$(VERSION_PARTS))
 MINOR              := $(word 2,$(VERSION_PARTS))
 MICRO              := $(word 3,$(VERSION_PARTS))
 
-CURRENT_VERSION    := $(MAJOR).$(MINOR).$(MICRO)
-CURRENT_TAG        := v$(CURRENT_VERSION)
+CURRENT_VERSION    = $(MAJOR).$(MINOR).$(MICRO)
+CURRENT_TAG        = v$(CURRENT_VERSION)
 NEXT_VERSION	   := $
 
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
