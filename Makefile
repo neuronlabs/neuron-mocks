@@ -139,7 +139,7 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(info $(M) commits_since_tag $(COMMITS_SINCE_TAG))
 	$(info $(M) current version to $(CURRENT_VERSION))
 	$(info $(M) next micro: $(NEXT_MICRO))
-	@CURRENT_VERSION:=$(MAJOR).$(MINOR).$(NEXT_MICRO)
+	$(shell CURRENT_VERSION=$(MAJOR).$(MINOR).$(NEXT_MICRO))
 	$(info $(M) setting version to $(CURRENT_VERSION))
 endif
 version-minor:
