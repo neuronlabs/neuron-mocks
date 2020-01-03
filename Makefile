@@ -63,6 +63,11 @@ push-develop:
 	$(info $(M) pushing to origin/develop…)
 	@git push origin develop
 
+.PHONY: push-master
+push-master:
+	$(info $(M) pushing to origin/master…)
+	@git push origin master
+
 .PHONY: push-tag
 push-tag:
 	$(info $(M) pushing to origin/${NEXT_TAG}…)
