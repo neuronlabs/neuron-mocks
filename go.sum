@@ -18,8 +18,8 @@ github.com/neuronlabs/errors v1.2.0 h1:ZNd5FCpwCvrLopuKcJD1eOi4dwTdJnooDCjU7FvG/
 github.com/neuronlabs/errors v1.2.0/go.mod h1:5XKrARpZvFkOmk8NFPPlRWCDdamLN7sxO7eO51M/tn4=
 github.com/neuronlabs/inflection v1.0.1 h1:LDuwbM1jYKEf6DDcA7XV7JRn3Sv9/PBiW6iUojZhTZ4=
 github.com/neuronlabs/inflection v1.0.1/go.mod h1:gnqNj1uxAGPYT1LsHRvSyBcd57vvIKTuTmS3ffdgRd8=
-github.com/neuronlabs/neuron-core v0.11.1 h1:SQempksJ1FXXWzEYvVPyInePipyflVHZcx1jYKXyKs8=
-github.com/neuronlabs/neuron-core v0.11.1/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
+github.com/neuronlabs/neuron-core v0.11.2 h1:+5JT5NdaZQXfpUY3twYxAK/jjVYBbsBX3yT5PGir9Ic=
+github.com/neuronlabs/neuron-core v0.11.2/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
 github.com/neuronlabs/strcase v1.0.0 h1:F/7Scr7ojAL6l5g3MQiCENGlMI/NK6LwAfaURcUiI7U=
 github.com/neuronlabs/strcase v1.0.0/go.mod h1:IhdRx7jB1zZAQ5r2ryfBc/28sWmXZDbQi7XokQKCpgo=
 github.com/neuronlabs/uni-logger v1.1.1 h1:eQsT4fGOI+oHiBc7o5w1gvQUtafcUK59QEIBee9IZEw=
