@@ -31,16 +31,6 @@ NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
 NEXT_MICRO          = $(shell echo $$(($(MICRO)+$(COMMITS_SINCE_TAG))))
 
-ifeq ($(strip $(COMMITS_SINCE_TAG)),)
-CURRENT_VERSION_MICRO := $(MAJOR).$(MINOR).$(MICRO)
-CURRENT_VERSION_MINOR := $(CURRENT_VERSION_MICRO)
-CURRENT_VERSION_MAJOR := $(CURRENT_VERSION_MICRO)
-else
-CURRENT_VERSION_MICRO := $(MAJOR).$(MINOR).$(NEXT_MICRO)
-CURRENT_VERSION_MINOR := $(MAJOR).$(NEXT_MINOR).0
-CURRENT_VERSION_MAJOR := $(NEXT_MAJOR).0.0
-endif
-
 DATE                = $(shell date +'%d.%m.%Y')
 TIME                = $(shell date +'%H:%M:%S')
 COMMIT             := $(shell git rev-parse HEAD)
@@ -50,21 +40,18 @@ BRANCH_NAME        := $(shell git rev-parse --abbrev-ref HEAD)
 TAG_MESSAGE         = "$(TIME) $(DATE) $(AUTHOR) $(BRANCH_NAME)"
 COMMIT_MESSAGE     := $(shell git log --format=%B -n 1 $(COMMIT))
 
-CURRENT_TAG_MICRO  := "v$(CURRENT_VERSION_MICRO)"
-CURRENT_TAG_MINOR  := "v$(CURRENT_VERSION_MINOR)"
-CURRENT_TAG_MAJOR  := "v$(CURRENT_VERSION_MAJOR)"
-
 dirty = "dirty"
 
 RELEASE_TARGETS = release-patch release-minor release-major
 .PHONY: $(RELEASE_TARGETS) release
-release-patch: CURRENT_TAG=$(CURRENT_TAG_MICRO)
-release-minor: CURRENT_TAG=$(CURRENT_TAG_MINOR)
-release-major: CURRENT_TAG=$(CURRENT_TAG_MAJOR)
-$(RELEASE_TARGETS): latest-core release
+$(RELEASE_TARGETS): latest-core test-race lint commit 
+release-patch: version-patch
+release-minor: version-minor
+release-major: version-major
+$(RELEASE_TARGETS): release
 
 ## release a version
-release: test-race lint commit
+release:
 	$(info $(M) creating tag: '${CURRENT_TAG}'…)
 	git tag -a ${CURRENT_TAG} -m ${TAG_MESSAGE}
 	$(info $(M) pushing to origin/develop…)
@@ -133,3 +120,29 @@ lint:
 .PHONY: latest-core
 latest-core:
 	go get github.com/neuronlabs/neuron-core@latest
+
+VERSIONS := version-patch version-minor version-major
+.PHONY: $(VERSIONS) current-tag
+version-patch:
+ifeq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
+else
+	CURRENT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO)
+endif
+
+version-minor:
+ifeq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
+else
+	CURRENT_VERSION := $(MAJOR).$(NEXT_MINOR).0
+endif
+
+version-major:
+ifeq ($(strip $(COMMITS_SINCE_TAG)),)
+	CURRENT_VERSION := $(MAJOR).$(MINOR).$(MICRO)
+else
+	CURRENT_VERSION := $(NEXT_MAJOR).0.0
+endif
+
+$(VERSIONS): current-tag
+	CURRENT_TAG := v$(CURRENT_VERSION)
