@@ -147,6 +147,7 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 else
 	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
+
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(NEXT_MAJOR).0.0)
