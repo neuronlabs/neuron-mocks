@@ -57,7 +57,7 @@ $(RELEASE_TARGETS): create-tag push-tag push-develop
 create-tag: current-tag
 	$(info $(M) creating tag: '${NEXT_TAG}'…)
 	git tag -a ${NEXT_TAG} -m ${TAG_MESSAGE}
-	
+
 .PHONY: push-develop
 push-develop:
 	$(info $(M) pushing to origin/develop…)
@@ -65,8 +65,8 @@ push-develop:
 
 .PHONY: push-tag
 push-tag:
-	$(info $(M) pushing to origin/${CURRENT_TAG}…)
-	@git push origin ${CURRENT_TAG}
+	$(info $(M) pushing to origin/${NEXT_TAG}…)
+	@git push origin ${NEXT_TAG}
 
 
 ## check git status
