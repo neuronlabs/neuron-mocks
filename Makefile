@@ -27,9 +27,8 @@ MAJOR              := $(word 1,$(VERSION_PARTS))
 MINOR              := $(word 2,$(VERSION_PARTS))
 MICRO              := $(word 3,$(VERSION_PARTS))
 
-CURRENT_VERSION    = $(MAJOR).$(MINOR).$(MICRO)
-CURRENT_TAG        = v$(CURRENT_VERSION)
-NEXT_VERSION	   := $
+CURRENT_VERSION    := $(MAJOR).$(MINOR).$(MICRO)
+CURRENT_TAG        := v$(CURRENT_VERSION)
 
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
@@ -139,7 +138,7 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(info $(M) commits_since_tag $(COMMITS_SINCE_TAG))
 	$(info $(M) current version to $(CURRENT_VERSION))
 	$(info $(M) next micro: $(NEXT_MICRO))
-	CURRENT_VERSION=$(shell echo $$($(MAJOR).$(MINOR).$(NEXT_MICRO)))
+	CURRENT_VERSION	:= $(MAJOR).$(MINOR).$(NEXT_MICRO)
 	$(info $(M) setting version to $(CURRENT_VERSION))
 endif
 version-minor:
