@@ -135,15 +135,15 @@ VERSIONS := version-patch version-minor version-major
 .PHONY: $(VERSIONS) current-tag
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	$(eval CURRENT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO))
+	$(eval NEXT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO))
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	NEXT_VERSION=$(MAJOR).$(NEXT_MINOR).0
+	$(eval NEXT_VERSION := $(MAJOR).$(NEXT_MINOR).0)
 endif
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	NEXT_VERSION=$(NEXT_MAJOR).0.0
+	$(eval NEXT_VERSION := $(NEXT_MAJOR).0.0)
 endif
 $(VERSIONS): current-tag
 
