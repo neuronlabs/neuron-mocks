@@ -130,15 +130,15 @@ version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	CURRENT_VERSION = $(MAJOR).$(MINOR).$(NEXT_MICRO)
 endif
-
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	CURRENT_VERSION = $(MAJOR).$(NEXT_MINOR).0
 endif
-
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	CURRENT_VERSION = $(NEXT_MAJOR).0.0
 endif
+$(VERSIONS): current-tag
 
-$(VERSIONS): ; CURRENT_TAG = v$(CURRENT_VERSION)
+current-tag:
+	CURRENT_TAG = v$(CURRENT_VERSION)
