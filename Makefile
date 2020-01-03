@@ -14,7 +14,7 @@ TESTPKGS = $(shell env GO111MODULE=on $(GO) list -f \
 Q = $(if $(filter 1,$V),,@)
 M = $(shell printf "\033[34;1m▶\033[0m")
 
-DESCRIBE           	= $(shell git describe --match "v*" --always --tags)
+DESCRIBE           := $(shell git describe --match "v*" --always --tags)
 DESCRIBE_PARTS     := $(subst -, ,$(DESCRIBE))
 
 VERSION_TAG        := $(word 1,$(DESCRIBE_PARTS))
@@ -54,9 +54,10 @@ release-major: version-major
 $(RELEASE_TARGETS): create-tag push-tag push-develop
 
 .PHONY: create-tag
-create-tag:
+create-tag: current-tag
 	$(info $(M) creating tag: '${NEXT_TAG}'…)
 	git tag -a ${NEXT_TAG} -m ${TAG_MESSAGE}
+	
 .PHONY: push-develop
 push-develop:
 	$(info $(M) pushing to origin/develop…)
@@ -132,14 +133,14 @@ latest-core:
 	go get github.com/neuronlabs/neuron-core@latest
 
 VERSIONS := version-patch version-minor version-major
-.PHONY: $(VERSIONS) current-tag
+.PHONY: $(VERSIONS)
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(MAJOR).$(MINOR).$(NEXT_MICRO))
 else
 	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
-	$(info $(M) next version: ${NEXT_VERSION})
+
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(MAJOR).$(NEXT_MINOR).0)
@@ -152,7 +153,8 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 else
 	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
-$(VERSIONS): current-tag
 
+.PHONY: current-tag
 current-tag:
 	$(eval NEXT_TAG := v$(NEXT_VERSION))
+
