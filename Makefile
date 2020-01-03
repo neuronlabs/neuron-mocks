@@ -138,18 +138,18 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(info $(M) commits_since_tag $(COMMITS_SINCE_TAG))
 	$(info $(M) current version to $(CURRENT_VERSION))
 	$(info $(M) next micro: $(NEXT_MICRO))
-	CURRENT_VERSION	:= $(MAJOR).$(MINOR).$(NEXT_MICRO)
+	NEXT_VERSION	:= $(MAJOR).$(MINOR).$(NEXT_MICRO)
 	$(info $(M) setting version to $(CURRENT_VERSION))
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	@CURRENT_VERSION=$(MAJOR).$(NEXT_MINOR).0
+	@NEXT_VERSION	:=	$(MAJOR).$(NEXT_MINOR).0
 endif
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	@CURRENT_VERSION=$(NEXT_MAJOR).0.0
+	@NEXT_VERSION	:=	$(NEXT_MAJOR).0.0
 endif
 $(VERSIONS): current-tag
 
 current-tag:
-	@CURRENT_TAG=v$(CURRENT_VERSION)
+	@CURRENT_TAG=v$(NEXT_VERSION)
