@@ -55,8 +55,8 @@ $(RELEASE_TARGETS): create-tag push-tag push-develop
 
 .PHONY: create-tag
 create-tag:
-	$(info $(M) creating tag: '${CURRENT_TAG}'…)
-	git tag -a ${CURRENT_TAG} -m ${TAG_MESSAGE}
+	$(info $(M) creating tag: '${NEXT_TAG}'…)
+	git tag -a ${NEXT_TAG} -m ${TAG_MESSAGE}
 .PHONY: push-develop
 push-develop:
 	$(info $(M) pushing to origin/develop…)
@@ -135,21 +135,17 @@ VERSIONS := version-patch version-minor version-major
 .PHONY: $(VERSIONS) current-tag
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	$(info $(M) commits_since_tag $(COMMITS_SINCE_TAG))
-	$(info $(M) current version to $(CURRENT_VERSION))
-	$(info $(M) next micro: $(NEXT_MICRO))
 	NEXT_VERSION=$(MAJOR).$(MINOR).$(NEXT_MICRO)
-	$(info $(M) setting version to $(NEXT_VERSION))
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	@NEXT_VERSION	:=	$(MAJOR).$(NEXT_MINOR).0
+	NEXT_VERSION=$(MAJOR).$(NEXT_MINOR).0
 endif
 version-major:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
-	@NEXT_VERSION	:=	$(NEXT_MAJOR).0.0
+	NEXT_VERSION=$(NEXT_MAJOR).0.0
 endif
 $(VERSIONS): current-tag
 
 current-tag:
-	@CURRENT_TAG=v$(NEXT_VERSION)
+	NEXT_TAG=v$(NEXT_VERSION)
