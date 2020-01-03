@@ -29,6 +29,7 @@ MICRO              := $(word 3,$(VERSION_PARTS))
 
 CURRENT_VERSION    := $(MAJOR).$(MINOR).$(MICRO)
 CURRENT_TAG        := v$(CURRENT_VERSION)
+NEXT_VERSION	   := $
 
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
@@ -77,6 +78,8 @@ ifeq ($(GIT_DIRTY), dirty)
 	$(info $(M) preparing commit…)
 	git add .
 	git commit -am "$(COMMIT_MESSAGE)"
+else ifeq($(strip $(COMMITS_SINCE_TAG)),)
+	$(error no changes from the previous tag)
 endif
 
 .PHONY: info
@@ -129,6 +132,7 @@ VERSIONS := version-patch version-minor version-major
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	@CURRENT_VERSION=$(MAJOR).$(MINOR).$(NEXT_MICRO)
+	$(info $(M) setting version to )
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
