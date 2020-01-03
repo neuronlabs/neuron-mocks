@@ -136,6 +136,7 @@ VERSIONS := version-patch version-minor version-major
 .PHONY: $(VERSIONS) current-tag
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
+	$(info $(M) current version to $(CURRENT_VERSION))
 	@CURRENT_VERSION=$(MAJOR).$(MINOR).$(NEXT_MICRO)
 	$(info $(M) setting version to $(CURRENT_VERSION))
 endif
