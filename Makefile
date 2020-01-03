@@ -139,6 +139,7 @@ ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 else
 	$(eval NEXT_VERSION := $(CURRENT_VERSION))
 endif
+	$(info $(M) next version: ${NEXT_VERSION})
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(eval NEXT_VERSION := $(MAJOR).$(NEXT_MINOR).0)
