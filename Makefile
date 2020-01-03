@@ -137,7 +137,7 @@ VERSIONS := version-patch version-minor version-major
 version-patch:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
 	@CURRENT_VERSION=$(MAJOR).$(MINOR).$(NEXT_MICRO)
-	$(info $(M) setting version to )
+	$(info $(M) setting version to $(CURRENT_VERSION))
 endif
 version-minor:
 ifneq ($(strip $(COMMITS_SINCE_TAG)),)
