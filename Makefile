@@ -14,6 +14,8 @@ TESTPKGS = $(shell env GO111MODULE=on $(GO) list -f \
 Q = $(if $(filter 1,$V),,@)
 M = $(shell printf "\033[34;1m▶\033[0m")
 
+NEURON_PACKAGES    := $(shell cat go.mod | grep ^[^module] | grep neuronlabs | tr -d '\t' | sed 's/ .*//')
+
 DESCRIBE           := $(shell git describe --match "v*" --always --tags)
 DESCRIBE_PARTS     := $(subst -, ,$(DESCRIBE))
 
@@ -32,7 +34,7 @@ CURRENT_TAG        := v$(CURRENT_VERSION)
 
 NEXT_MAJOR         := $(shell echo $$(($(MAJOR)+1)))
 NEXT_MINOR         := $(shell echo $$(($(MINOR)+1)))
-NEXT_MICRO         	= $(shell echo $$(($(MICRO)+$(COMMITS_SINCE_TAG))))
+NEXT_MICRO         := $(shell echo $$(($(MICRO)+1)))
 
 DATE                = $(shell date +'%d.%m.%Y')
 TIME                = $(shell date +'%H:%M:%S')
@@ -47,7 +49,7 @@ dirty = "dirty"
 
 RELEASE_TARGETS = release-patch release-minor release-major
 .PHONY: $(RELEASE_TARGETS) release
-$(RELEASE_TARGETS): latest-core test-race lint commit
+$(RELEASE_TARGETS): get-neuron-latest test-race lint commit
 release-patch: version-patch
 release-minor: version-minor
 release-major: version-major
@@ -73,6 +75,8 @@ push-tag:
 	$(info $(M) pushing to origin/${NEXT_TAG}…)
 	@git push origin ${NEXT_TAG}
 
+print_pkgs:
+	$(info $(M) $(NEURON_PACKAGES))
 
 ## check git status
 .PHONY: check
@@ -89,7 +93,7 @@ ifeq ($(GIT_DIRTY), dirty)
 	@git add .
 	@git commit -am "$(COMMIT_MESSAGE)"
 else ifeq ($(strip $(COMMITS_SINCE_TAG)),)
-	$(error no changes from the previous tag)
+	$(info no changes from the previous tag)
 else
 	$(info $(M) nothing to commit)
 endif
@@ -98,6 +102,16 @@ endif
 info:
 	@echo "Git Commit:        ${COMMIT}"
 	@echo "Git Tree State:    ${GIT_DIRTY}"
+
+## Neuron packages
+.PHONY: get-neuron-latest
+get-neuron-latest:
+ifneq ($(strip $(NEURON_PACKAGES)),)
+	$(info $(M) getting latest neuron packages…)
+	$(foreach pkg,$(NEURON_PACKAGES),$(info getting $(pkg)@latest $(shell go get $(firstword $(pkg)@latest))))
+else
+	$(info $(M) no neuron packages found)
+endif
 
 ## Todos
 .PHONY: todo
@@ -135,9 +149,6 @@ lint:
 	@$(GOLINTCI) run ./...
 	@$(MISSPELL) -error **/*
 
-.PHONY: latest-core
-latest-core:
-	go get github.com/neuronlabs/neuron-core@latest
 
 VERSIONS := version-patch version-minor version-major
 .PHONY: $(VERSIONS)
