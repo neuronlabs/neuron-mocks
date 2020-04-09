@@ -90,7 +90,7 @@ endif
 commit:
 ifeq ($(GIT_DIRTY), dirty)
 	$(info $(M) preparing commit…)
-	@git add .
+	@git add --all
 	@git commit -am "$(COMMIT_MESSAGE)"
 else ifeq ($(strip $(COMMITS_SINCE_TAG)),)
 	$(info no changes from the previous tag)
