@@ -3,6 +3,7 @@ package mocks
 import (
 	"context"
 
+	"github.com/neuronlabs/neuron-core/mapping"
 	"github.com/stretchr/testify/mock"
 
 	"github.com/neuronlabs/neuron-core/config"
@@ -26,7 +27,7 @@ type Factory struct {
 // New creates new repository
 // Implements repository.Factory method
 func (f *Factory) New(model *config.Repository) (repository.Repository, error) {
-	return &Repository{}, nil
+	return &Repository{ids: map[*mapping.ModelStruct]string{}}, nil
 }
 
 // DriverName returns the factory repository name
