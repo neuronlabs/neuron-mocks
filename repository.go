@@ -138,8 +138,8 @@ func (_m *Repository) Get(ctx context.Context, s *query.Scope) error {
 	return r0
 }
 
-func (_m *Repository) HealthCheck(ctx context.Context) (repository.HealthResponse, error) {
-	return repository.HealthResponse{Status: repository.StatusPass}, nil
+func (_m *Repository) HealthCheck(ctx context.Context) (*repository.HealthResponse, error) {
+	return &repository.HealthResponse{Status: repository.StatusPass}, nil
 }
 
 // List provides a mock function with given fields: ctx, s

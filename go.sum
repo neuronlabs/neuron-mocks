@@ -32,6 +32,8 @@ github.com/neuronlabs/neuron-core v0.12.1 h1:AfRb+VlD212w4ot4iyUfXtwInCGy9J3W2+3
 github.com/neuronlabs/neuron-core v0.12.1/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
 github.com/neuronlabs/neuron-core v0.12.2 h1:MDzhJFBv/AFqZbm5184cD+d5SCchq+cp8+Ia+W2Sk5g=
 github.com/neuronlabs/neuron-core v0.12.2/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
+github.com/neuronlabs/neuron-core v0.13.0 h1:lzAlGlmk4dHgHMQQCBlCrqSwX/DrcFRPbC4Yjn6GKM4=
+github.com/neuronlabs/neuron-core v0.13.0/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
 github.com/neuronlabs/strcase v1.0.0 h1:F/7Scr7ojAL6l5g3MQiCENGlMI/NK6LwAfaURcUiI7U=
 github.com/neuronlabs/strcase v1.0.0/go.mod h1:IhdRx7jB1zZAQ5r2ryfBc/28sWmXZDbQi7XokQKCpgo=
 github.com/neuronlabs/uni-logger v1.1.1 h1:eQsT4fGOI+oHiBc7o5w1gvQUtafcUK59QEIBee9IZEw=

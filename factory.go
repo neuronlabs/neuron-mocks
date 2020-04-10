@@ -25,7 +25,7 @@ type Factory struct {
 
 // New creates new repository
 // Implements repository.Factory method
-func (f *Factory) New(s repository.Controller, model *config.Repository) (repository.Repository, error) {
+func (f *Factory) New(model *config.Repository) (repository.Repository, error) {
 	return &Repository{}, nil
 }
 
