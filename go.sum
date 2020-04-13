@@ -14,6 +14,7 @@ github.com/kr/text v0.1.0 h1:45sCR5RtlFHMR4UwH9sdQ5TC8v0qDQCHnXt+kaKSTVE=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
 github.com/leodido/go-urn v1.1.0 h1:Sm1gr51B1kKyfD2BlRcLSiEkffoG96g6TPv6eRoEiB8=
 github.com/leodido/go-urn v1.1.0/go.mod h1:+cyI34gQWZcE1eQU7NVgKkkzdXDQHr1dBMtdAPozLkw=
+github.com/neuronlabs/errors v1.1.1-0.20190801002318-9535ebe7d446 h1:/w6PUkTSEYT/UjXsL0dY9j+Nn5tkLXckN8+ZK483hD4=
 github.com/neuronlabs/errors v1.1.1-0.20190801002318-9535ebe7d446/go.mod h1:5XKrARpZvFkOmk8NFPPlRWCDdamLN7sxO7eO51M/tn4=
 github.com/neuronlabs/errors v1.2.0 h1:ZNd5FCpwCvrLopuKcJD1eOi4dwTdJnooDCjU7FvG/s4=
 github.com/neuronlabs/errors v1.2.0/go.mod h1:5XKrARpZvFkOmk8NFPPlRWCDdamLN7sxO7eO51M/tn4=
@@ -43,6 +44,8 @@ github.com/neuronlabs/neuron-core v0.14.2 h1:Nv8FufxWuCFAedOkDiQUfyrW0E5lAa04TaL
 github.com/neuronlabs/neuron-core v0.14.2/go.mod h1:GtynMQn14xXjC/IS7kPXHaikT8n8dGcCQsMg9zEsTUs=
 github.com/neuronlabs/neuron-core v0.14.3-0.20200410162610-5651cb2a58e2 h1:IcnmiHj7zLqwZS5oWyJib2+wLVXovJh1u6RYc1W7pDE=
 github.com/neuronlabs/neuron-core v0.14.3-0.20200410162610-5651cb2a58e2/go.mod h1:cj0E68p/2kt79vfGwY9QRTWNCS2+NpUK+HqUCvsrTsk=
+github.com/neuronlabs/neuron-core v0.14.3-0.20200413114317-7f4d6865a3e1 h1:SglXkILFThfTEGj/F1dZ63ALtKtPqYh7Kyk72wSnW/Y=
+github.com/neuronlabs/neuron-core v0.14.3-0.20200413114317-7f4d6865a3e1/go.mod h1:x6zukfVqH2Wh++l1oXShxa9KUCvg0Q1w6PQPzqh0TPk=
 github.com/neuronlabs/strcase v1.0.0 h1:F/7Scr7ojAL6l5g3MQiCENGlMI/NK6LwAfaURcUiI7U=
 github.com/neuronlabs/strcase v1.0.0/go.mod h1:IhdRx7jB1zZAQ5r2ryfBc/28sWmXZDbQi7XokQKCpgo=
 github.com/neuronlabs/uni-logger v1.1.1 h1:eQsT4fGOI+oHiBc7o5w1gvQUtafcUK59QEIBee9IZEw=
