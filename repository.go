@@ -13,9 +13,6 @@ import (
 	"github.com/neuronlabs/neuron/query"
 )
 
-// DriverName is the driver name used by this mocks factory and repository.
-const DriverName = "mocks"
-
 /**
 
 Repository
@@ -158,20 +155,6 @@ func (_m *Repository) Delete(ctx context.Context, s *query.Scope) (int64, error)
 // Dial implements repository.Repository interface.
 func (_m *Repository) Dial(context.Context) error {
 	return nil
-}
-
-// Get provides a mock function with given fields: ctx, s
-func (_m *Repository) Get(ctx context.Context, s *query.Scope) error {
-	ret := _m.Called(ctx, s)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *query.Scope) error); ok {
-		r0 = rf(ctx, s)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
 }
 
 // HealthCheck implements repository.Repository interface.

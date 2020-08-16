@@ -1,4 +1,4 @@
-module github.com/neuronlabs/neuron-mocks
+module github.com/neuronlabs/neuron-extensions/repository/mocks
 
 go 1.13
 
